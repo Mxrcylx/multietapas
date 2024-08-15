@@ -1,23 +1,52 @@
-import * as C from "@chakra-ui/react"
-
+import React, { useState } from 'react';
+import { VStack, Input, Checkbox, Text } from '@chakra-ui/react';
 
 const FormProjeto = () => {
-    return(
-        <C.VStack>
-             <div>
-            <h1>Projeto</h1>
-            </div>
-            <C.Input type="text" placeholder="Projeto"/>
-            <C.Input type="text" placeholder="Área"/>
-            <C.Input type="text" placeholder="Coordenador/Professor"/>
-            <C.CheckboxGroup>
-                <C.Checkbox value="option1">CETCC</C.Checkbox>
-                <C.Checkbox value="option1">CETAFAJU</C.Checkbox>
-                <C.Checkbox value="option1">CETICC</C.Checkbox>
-                <C.Checkbox value="option1">CETAFEST</C.Checkbox>
-            </C.CheckboxGroup>
-        </C.VStack>
-    )
-}
+  const [selectedOption, setSelectedOption] = useState([]);
 
-export default FormProjeto
+  const handleCheckboxChange = (value) => {
+    setSelectedOption((prev) =>
+      prev.includes(value)
+        ? prev.filter((item) => item !== value)
+        : [...prev, value]
+    );
+  };
+
+  return (
+    <VStack spacing={4} align="stretch" className="form-container">
+      <div className="form-header">
+        <Text fontSize="2xl" fontWeight="bold">Projeto</Text>
+      </div>
+      <Input placeholder="Projeto" className="form-input" />
+      <Input placeholder="Área" className="form-input" />
+      <Input placeholder="Coordenador/Professor" className="form-input" />
+      <Text fontSize="lg" fontWeight="semibold">Selecione o local:</Text>
+      <Checkbox
+        isChecked={selectedOption.includes('CETCC')}
+        onChange={() => handleCheckboxChange('CETCC')}
+      >
+        CETCC
+      </Checkbox>
+      <Checkbox
+        isChecked={selectedOption.includes('CETAFAJU')}
+        onChange={() => handleCheckboxChange('CETAFAJU')}
+      >
+        CETAFAJU
+      </Checkbox>
+      <Checkbox
+        isChecked={selectedOption.includes('CETICC')}
+        onChange={() => handleCheckboxChange('CETICC')}
+      >
+        CETICC
+      </Checkbox>
+      <Checkbox
+        isChecked={selectedOption.includes('CETAFEST')}
+        onChange={() => handleCheckboxChange('CETAFEST')}
+      >
+        CETAFEST
+      </Checkbox>
+    </VStack>
+  );
+};
+
+export default FormProjeto;
