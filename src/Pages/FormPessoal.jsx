@@ -12,8 +12,10 @@ const FormPessoal = () => {
       <Input type="email" placeholder="Email" className="form-input" />
       <Text fontSize="lg" fontWeight="semibold">Selecione o sexo:</Text>
       <RadioGroup>
-        <Radio value="female">Feminino</Radio>
-        <Radio value="male">Masculino</Radio>
+        <VStack spacing={4} align="start">
+          <Radio value="female">Feminino</Radio>
+          <Radio value="male">Masculino</Radio>
+        </VStack>
       </RadioGroup>
     </VStack>
   );
